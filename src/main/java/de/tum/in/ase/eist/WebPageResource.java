@@ -22,7 +22,6 @@ public class WebPageResource {
 		String answer = queryProcessor.process(query);
 		model.addAttribute("query", query);
 		model.addAttribute("answer", answer);
-		return "answer";
-
+		return answer;
 	}
 }
