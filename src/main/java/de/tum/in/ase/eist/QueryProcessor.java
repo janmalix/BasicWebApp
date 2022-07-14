@@ -15,8 +15,9 @@ public class QueryProcessor {
            return "MyTeam";
         } else if (query.contains("what is your name")){ // TODO extend the programm here
             return "jan";
-        } else if (query.contains("which of the following numbers") && query.contains("56, 296")) {
-            return "296";
+        } else if (query.contains("which of the following numbers is the largest")) {
+            var split = query.split("largest: ")[0].split(", ");
+            return Integer.toString(Math.max(Integer.parseInt(split[0]), Integer.parseInt(split[1])));
         } else if (query.contains("what is 16 plus 10")) {
             return "26";
         } else
