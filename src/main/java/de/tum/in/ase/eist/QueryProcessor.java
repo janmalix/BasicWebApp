@@ -2,6 +2,9 @@ package de.tum.in.ase.eist;
 
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
+import java.util.StringJoiner;
+
 @Service
 public class QueryProcessor {
 
@@ -36,8 +39,17 @@ public class QueryProcessor {
                 return Integer.toString(Integer.parseInt(split[0]) * Integer.parseInt(split[1]));
             }
             return "";
-        } else if (query.contains("both ")) {
-            return "";
+        } else if (query.contains("numbers are primes: ")) {
+            var split = query.split("primes: ")[1].split(", ");
+            var joiner = new StringJoiner(", ", "", "");
+
+            for (var s : split) {
+                if ((new BigInteger(s)).isProbablePrime(80)) {
+                    joiner.add(s);
+                }
+            }
+
+            return joiner.toString();
         } else
         {
             return "";
