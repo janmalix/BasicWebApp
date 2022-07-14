@@ -19,8 +19,15 @@ public class QueryProcessor {
             var split = query.split("largest: ")[1].split(", ");
             return Integer.toString(Math.max(Integer.parseInt(split[0]), Integer.parseInt(split[1])));
         } else if (query.contains("what is")) {
-            var split = query.split("is ")[1].split(" plus ");
-            return Integer.toString(Integer.parseInt(split[0]) + Integer.parseInt(split[1]));
+            if (query.contains("plus")) {
+                var split = query.split("is ")[1].split(" plus ");
+                return Integer.toString(Integer.parseInt(split[0]) + Integer.parseInt(split[1]));
+            }
+            if (query.contains("multiplied by")) {
+                var split = query.split("is ")[1].split(" multiplied by ");
+                return Integer.toString(Integer.parseInt(split[0]) * Integer.parseInt(split[1]));
+            }
+            return "";
         } else
         {
             return "";
