@@ -17,7 +17,15 @@ public class QueryProcessor {
             return "jan";
         } else if (query.contains("which of the following numbers is the largest")) {
             var split = query.split("largest: ")[1].split(", ");
-            return Integer.toString(Math.max(Integer.parseInt(split[0]), Integer.parseInt(split[1])));
+            var largest = Integer.parseInt(split[0]);
+            for (var i : split) {
+                var temp = Integer.parseInt(i);
+                if (temp > largest) {
+                    largest = temp;
+                }
+            }
+            return Integer.toString(largest);
+
         } else if (query.contains("what is")) {
             if (query.contains("plus")) {
                 var split = query.split("is ")[1].split(" plus ");
@@ -27,6 +35,8 @@ public class QueryProcessor {
                 var split = query.split("is ")[1].split(" multiplied by ");
                 return Integer.toString(Integer.parseInt(split[0]) * Integer.parseInt(split[1]));
             }
+            return "";
+        } else if (query.contains("both ")) {
             return "";
         } else
         {
