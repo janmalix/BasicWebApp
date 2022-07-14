@@ -16,10 +16,11 @@ public class QueryProcessor {
         } else if (query.contains("what is your name")){ // TODO extend the programm here
             return "jan";
         } else if (query.contains("which of the following numbers is the largest")) {
-            var split = query.split("largest: ")[0].split(", ");
+            var split = query.split("largest: ")[1].split(", ");
             return Integer.toString(Math.max(Integer.parseInt(split[0]), Integer.parseInt(split[1])));
-        } else if (query.contains("what is 16 plus 10")) {
-            return "26";
+        } else if (query.contains("what is")) {
+            var split = query.split("is ")[1].split(" plus ");
+            return Integer.toString(Integer.parseInt(split[0]) + Integer.parseInt(split[1]));
         } else
         {
             return "";
